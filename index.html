@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal academic portfolio for a PhD student in Algorithms, Combinatorics and Optimization at Carnegie Mellon.">
+  <meta name="keywords" content="Algorithms, Combinatorics, Optimization, PhD, Carnegie Mellon, research portfolio">
+  <meta name="author" content="Academic Portfolio">
+  <meta property="og:title" content="Academic Portfolio">
+  <meta property="og:description" content="Research, writing, and contact information for a PhD student in Algorithms, Combinatorics and Optimization at Carnegie Mellon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com">
+  <meta property="og:image" content="assets/favicon.svg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Academic Portfolio</title>
+</head>
+<body>
+  <header class="top-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#home">Academic Portfolio</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#research">Research &amp; Projects</a></li>
+          <li><a href="#writing">Writing &amp; Talks</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section hero" aria-labelledby="home-heading">
+      <div class="content hero-shell">
+        <div class="hero-content">
+          <p class="highlight" aria-label="Areas">Algorithms · Combinatorics · Optimization</p>
+          <h1 id="home-heading">Your Name</h1>
+          <p class="subtitle">PhD student in Algorithms, Combinatorics &amp; Optimization at Carnegie Mellon</p>
+          <p class="bio">I am a PhD student at Carnegie Mellon in the Algorithms, Combinatorics and Optimization program, interested in discrete mathematics, geometry, and learning theory. I am grateful to be funded by the NSF Graduate Research Fellowship. Previously, I completed my undergraduate and master’s degrees in mathematics at the University of Pennsylvania, where I wrote a thesis in algebraic geometry.</p>
+          <div class="actions">
+            <a class="button primary" href="mailto:example@cmu.edu">Email</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orb stroke"></div>
+          <div class="orb primary"></div>
+          <div class="orb secondary"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="section" aria-labelledby="research-heading">
+      <div class="content">
+        <h2 id="research-heading">Research &amp; Projects</h2>
+        <div class="grid">
+          <article class="card" aria-label="Research project 1">
+            <div class="card-body">
+              <h3>Discrepancy Bounds in High-Dimensional Lattices</h3>
+              <p>Exploring new combinatorial discrepancy techniques for lattice-based constructions, including probabilistic methods that yield sharper bounds on geometric discrepancy in moderate dimensions.</p>
+              <div class="tags" aria-label="Topics">
+                <span class="tag">Discrete Math</span>
+                <span class="tag">Geometry</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="#" aria-label="Paper link for Discrepancy Bounds">Paper</a>
+              <a href="#" aria-label="Slides for Discrepancy Bounds">Slides</a>
+            </div>
+          </article>
+
+          <article class="card" aria-label="Research project 2">
+            <div class="card-body">
+              <h3>Robust Learning under Structured Noise</h3>
+              <p>Developing algorithms for learning geometric concepts in the presence of adversarial but structure-limited noise, with applications to sample-efficient active learning.</p>
+              <div class="tags" aria-label="Topics">
+                <span class="tag">Learning Theory</span>
+                <span class="tag">Optimization</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="#" aria-label="Paper link for Robust Learning">Paper</a>
+              <a href="#" aria-label="Code for Robust Learning">Code</a>
+            </div>
+          </article>
+
+          <article class="card" aria-label="Research project 3">
+            <div class="card-body">
+              <h3>Geometric Perspectives on Graph Sparsification</h3>
+              <p>Investigating the role of convex geometry in sparsification techniques to provide tighter guarantees for spectral approximations of large-scale graphs.</p>
+              <div class="tags" aria-label="Topics">
+                <span class="tag">Graphs</span>
+                <span class="tag">Convexity</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="#" aria-label="Paper link for Graph Sparsification">Paper</a>
+            </div>
+          </article>
+
+          <article class="card" aria-label="Research project 4">
+            <div class="card-body">
+              <h3>Symmetries in Algebraic Varieties</h3>
+              <p>Characterizing automorphism groups of select classes of varieties to clarify how symmetry informs computational complexity in algebraic settings.</p>
+              <div class="tags" aria-label="Topics">
+                <span class="tag">Algebraic Geometry</span>
+                <span class="tag">Complexity</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="#" aria-label="Paper link for Symmetries">Paper</a>
+              <a href="#" aria-label="Slides for Symmetries">Slides</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing" class="section" aria-labelledby="writing-heading">
+      <div class="content">
+        <h2 id="writing-heading">Writing &amp; Talks</h2>
+        <ul class="timeline" aria-label="Writing and talks list">
+          <li class="timeline-item">
+            <div class="item-title">Discrete Curvature in Expanders</div>
+            <div class="item-meta">Workshop on Combinatorial Geometry · 2024</div>
+          </li>
+          <li class="timeline-item">
+            <div class="item-title">Learning Halfspaces with Structural Noise</div>
+            <div class="item-meta">Journal submission (in review) · 2023</div>
+          </li>
+          <li class="timeline-item">
+            <div class="item-title">Convex Relaxations for Graph Sparsification</div>
+            <div class="item-meta">Graduate Research Symposium · 2023</div>
+          </li>
+          <li class="timeline-item">
+            <div class="item-title">Automorphisms in Families of Surfaces</div>
+            <div class="item-meta">Algebraic Geometry Seminar · 2022</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <div class="content contact">
+        <div>
+          <h2 id="contact-heading">Contact</h2>
+          <p class="contact-email"><a href="mailto:example@cmu.edu">example@cmu.edu</a></p>
+          <div class="contact-links" aria-label="Academic profiles">
+            <a href="#" aria-label="Google Scholar profile">Google Scholar</a>
+            <a href="#" aria-label="arXiv profile">arXiv</a>
+          </div>
+        </div>
+        <form class="contact-form" action="mailto:example@cmu.edu" method="get">
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" required>
+          <label for="body">Message</label>
+          <textarea id="body" name="body" rows="4" required></textarea>
+          <button type="submit" class="button secondary">Open Email</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2024 Academic Portfolio · Built for clarity and accessibility.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
