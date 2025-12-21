@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8B0000">
+    <title>Eric Tal Myzelev | PhD Student in ACO</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f9f9f9;
+            --accent-color: #8B0000;
+            --text-main: #333333;
+            --text-light: #666666;
+            --text-on-accent: #ffffff;
+            
+            /* FONT DEFINITIONS */
+            --font-fancy: "Playfair Display", serif;
+            --font-clean: "Lato", sans-serif;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { 
+            scroll-behavior: smooth; 
+            background-color: var(--accent-color);
+            overscroll-behavior-y: none;
+        }
+        
+        body {
+            font-family: var(--font-clean);
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden; 
+        }
+
+        h1, h2, h3 { color: var(--text-main); font-weight: 700; }
+        a { text-decoration: none; color: var(--accent-color); transition: all 0.3s; }
+        a:hover { opacity: 0.8; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-in {
+            animation: fadeIn 1.5s ease-out forwards;
+            opacity: 0; 
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background-color: transparent; 
+            padding: 1.2rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; box-shadow: none;
+            transition: background-color 0.4s ease;
+        }
+
+        nav.nav-scrolled {
+            background-color: var(--accent-color);
+        }
+
+        .nav-logo {
+            font-family: var(--font-fancy); font-weight: 700; 
+            font-size: 1.5rem; color: white; font-style: normal;
+        }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-family: var(--font-clean); color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1px; font-weight: 700;
+        }
+        .nav-links a:hover { color: white; opacity: 1; text-decoration: underline; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background-color: var(--accent-color);
+            color: var(--text-on-accent);
+            min-height: 100vh;
+            display: flex; align-items: center;
+            padding: 9rem 15% 4rem 15%;
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; 
+            pointer-events: auto; 
+        }
+
+        .hero-content-wrapper {
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%; gap: 4rem;
+            position: relative;
+            z-index: 2; 
+        }
+
+        .hero-text { flex: 1; }
+        
+        .hero h1 {
+            font-family: var(--font-fancy); font-size: 4.5rem; 
+            margin-bottom: 1rem; line-height: 1;
+            color: white; font-weight: 700; font-style: normal;
+        }
+        
+        .hero h2 {
+            font-family: var(--font-clean); font-weight: 300;
+            font-size: 1.5rem; color: rgba(255,255,255,0.9);
+            margin-bottom: 2.5rem; font-style: normal;
+        }
+
+        .hero-image-container {
+            flex: 0 0 350px; height: 350px;
+            border-radius: 50%; overflow: hidden;
+            border: 5px solid rgba(255,255,255,0.2);
+            background-color: #e0e0e0;
+        }
+        .hero-image-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .hero-btn {
+            padding: 12px 35px; border-radius: 30px;
+            font-weight: 700; margin-right: 15px;
+            transition: all 0.3s; display: inline-block;
+            font-family: var(--font-clean);
+            cursor: pointer;
+        }
+
+        .btn-white-filled { 
+            background-color: white; color: var(--accent-color); border: 2px solid white; 
+        }
+        .btn-white-filled:hover { background-color: transparent; color: white; }
+
+        .btn-white-ghost {
+            background-color: transparent; border: 2px solid white; color: white;
+        }
+        .btn-white-ghost:hover {
+            background-color: white; color: var(--accent-color);
+        }
+
+        /* --- SECTIONS --- */
+        section { padding: 6rem 15%; }
+        
+        .section-title {
+            font-family: var(--font-fancy); font-size: 2.5rem;
+            margin-bottom: 4rem; position: relative;
+            display: inline-block; font-weight: 700; font-style: normal;
+        }
+        .section-title::after {
+            content: ''; position: absolute; left: 0; bottom: -10px;
+            width: 50px; height: 4px; background-color: var(--accent-color);
+        }
+
+        /* About */
+        .about-content {
+            display: grid; grid-template-columns: 3fr 2fr;
+            gap: 4rem; align-items: start;
+        }
+        .bio-text { font-family: var(--font-clean); }
+        .interests-list { list-style: none; }
+        .interests-list li {
+            margin-bottom: 0.8rem; display: flex; align-items: flex-start; 
+            font-weight: 700; color: var(--text-main);
+            font-family: var(--font-clean);
+        }
+        
+        .interests-list li i { 
+            color: var(--accent-color); 
+            margin-right: 12px; 
+            margin-top: 5px; 
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .custom-simplex {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px; 
+            margin-top: 5px;
+            min-width: 20px;
+            fill: none;
+            stroke: var(--accent-color);
+            stroke-width: 50; 
+            stroke-linejoin: round;
+        }
+
+        h3 { font-family: var(--font-fancy); font-size: 1.5rem; }
+
+        /* --- RESEARCH PROJECTS (Updated Interactions) --- */
+        .project-item {
+            margin-bottom: 2rem; 
+            padding: 2rem;
+            border-radius: 12px; 
+            background-color: white;
+            border: 1px solid #eee; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer; 
+            position: relative;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .project-title {
+            font-family: var(--font-fancy); font-weight: 700; 
+            font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.5rem;
+            font-style: normal;
+            padding-right: 20px; 
+        }
+
+        .chevron-icon {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            transition: transform 0.4s ease;
+            margin-top: 5px;
+        }
+
+        .project-item.expanded .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        .project-authors {
+            font-family: var(--font-clean); color: var(--text-light); 
+            margin-bottom: 0.5rem; font-style: normal;
+        }
+        
+        .project-venue {
+            font-family: var(--font-clean); 
+            font-weight: 700; 
+            color: var(--text-main);
+            font-size: 0.95rem; 
+            margin-bottom: 1rem;
+        }
+
+        .project-links {
+            margin-top: 0.5rem;
+            position: relative; 
+            z-index: 10; 
+        }
+        
+        /* THE DESCRIPTION: HIDDEN BY DEFAULT */
+        .project-description-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .project-description {
+            font-family: var(--font-clean); 
+            margin-bottom: 1.5rem; 
+            color: var(--text-main);
+            padding-top: 1rem; 
+        }
+        
+        .project-item.expanded .project-description-wrapper {
+            max-height: 1200px; 
+            opacity: 1;
+        }
+
+        /* Hover Styles */
+        .project-item:hover {
+            background-color: var(--accent-color); 
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139, 0, 0, 0.2); 
+            border-color: transparent;
+        }
+        .project-item:hover * { color: white !important; }
+        .project-item:hover .project-authors { color: rgba(255,255,255,0.8) !important; }
+        .project-item:hover .project-venue { color: rgba(255,255,255,0.9) !important; }
+        .project-item:hover .custom-simplex { stroke: white; } 
+        .project-item:hover .chevron-icon { color: white !important; }
+
+        /* --- CONTACT SECTION --- */
+        #contact { padding-top: 3rem; padding-bottom: 6rem; text-align: center; }
+        .contact-container { max-width: 700px; margin: 0 auto; }
+        .contact-text {
+            font-family: var(--font-clean); font-size: 1.2rem;
+            margin-bottom: 2rem; color: var(--text-light); line-height: 1.8;
+        }
+        .email-text {
+            font-family: var(--font-fancy); font-size: 2rem; 
+            color: var(--text-main); font-weight: 700;
+            font-style: normal; display: block;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            nav { flex-direction: column; padding: 1rem; gap: 1rem; }
+            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+            .nav-links a { font-size: 0.85rem; }
+            .hero {
+                min-height: 100vh; padding: 10rem 5% 4rem 5%;
+                text-align: center; justify-content: center; 
+            }
+            .hero-content-wrapper { flex-direction: column-reverse; gap: 2rem; }
+            .hero-image-container { width: 220px; height: 220px; flex: 0 0 auto; }
+            .hero h1 { font-size: 3rem; }
+            .hero h2 { font-size: 1.3rem; }
+            section { padding: 4rem 8%; }
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .project-item { padding: 1.5rem; }
+            .project-title { font-size: 1.3rem; }
+            #contact { padding-top: 2rem; padding-bottom: 4rem; }
+            .email-text { font-size: 1.4rem; word-break: break-all; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="animate-in">
+        <div class="nav-logo">Eric Tal Myzelev.</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="cv.pdf" target="_blank">CV</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <canvas id="hero-canvas"></canvas>
+
+        <div class="hero-content-wrapper">
+            <div class="hero-text animate-in">
+                <h1>Eric Tal Myzelev</h1>
+                <h2>PhD Student in Algorithms, Combinatorics, and Optimization<br>Carnegie Mellon University</h2>
+                <div style="margin-top: 2.5rem;">
+                    <a href="#about" class="hero-btn btn-white-filled">About Me</a>
+                    <a href="cv.pdf" target="_blank" class="hero-btn btn-white-ghost"><i class="fas fa-file-alt" style="margin-right: 8px;"></i> View CV</a>
+                </div>
+            </div>
+            
+            <div class="hero-image-container animate-in">
+                <img src="profile_photo.jpg" alt="Eric Tal Myzelev">
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="bio-text">
+                <p>
+                    I am a PhD student in the <a href="https://www.cmu.edu/math/aco/index.html" target="_blank" style="font-weight: 700;">Algorithms, Combinatorics, and Optimization (ACO)</a> program at Carnegie Mellon University.
+                </p>
+                <br>
+                <p>
+                    I am grateful to be funded by the <a href="https://www.nsfgrfp.org/" target="_blank" style="font-weight: 700;">National Science Foundation Graduate Research Fellowship</a>. Previously, I completed my undergraduate and master's degrees in Mathematics at the University of Pennsylvania, where I wrote an expository thesis on <a href="https://en.wikipedia.org/wiki/Dessin_d%27enfant" target="_blank" style="font-weight: 700;">Dessins d'Enfants</a> in Algebraic Geometry.
+                </p>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 1.5rem;">Research Interests</h3>
+                <ul class="interests-list">
+                    <li><i class="fas fa-brain"></i> Computational Learning Theory</li>
+                    <li>
+                        <svg class="custom-simplex" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M256 64 L64 448 L448 448 Z" /> 
+                            <path d="M256 64 L256 300" /> 
+                            <path d="M64 448 L256 300" /> 
+                            <path d="M448 448 L256 300" /> 
+                        </svg>
+                        Applications of Algebra and Topology to Discrete Math
+                    </li>
+                    <li><i class="fas fa-dice-d20"></i> Probabilistic Combinatorics</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" style="background-color: var(--secondary-bg); padding-bottom: 3rem;">
+        <h2 class="section-title">Research Projects</h2>
+        
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Roots of Real-Valued Zero Mean Maps</div>
+                    <div class="project-authors">Francesca Cantor, Julia D'Amico, Florian Frick, Eric Myzelev</div>
+                    <div class="project-venue">European Journal of Mathematics, 2025</div>
+                    <div class="project-links">
+                        <a href="https://link.springer.com/article/10.1007/s40879-025-00870-5" target="_blank" style="margin-right: 20px;"><i class="fas fa-external-link-alt"></i> Publisher</a>
+                        <a href="https://arxiv.org/abs/2503.19729" target="_blank"><i class="fas fa-link"></i> ArXiv</a>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down chevron-icon"></i>
+            </div>
+            
+            <div class="project-description-wrapper">
+                <div class="project-description">
+                    <p>We develop a topological framework for understanding where zero-mean functions vanish or change sign. A key observation is that function families from Fourier analysis can sometimes be described in a unified geometric way. For example, a (real) trigonometric polynomial of degree \(d\) can be written as</p>
+                    \[
+                    f(t)=\sum_{k=1}^d \big(a_k \cos(2\pi k t)+ b_k \sin(2\pi k t)\big),
+                    \]
+                    <p>where $a_k,b_k\in \mathbb R$ for all $k$. Rather than viewing \(f\) in isolation, we package the sine and cosine terms into a single map</p>
+                    \[
+                    \gamma(t)=(\cos(2\pi t),\sin(2\pi t),\dots,\cos(2\pi d t),\sin(2\pi d t))\in\mathbb{R}^{2d}.
+                    \]
+                    <p>This map is equivariant with respect to the natural rotational symmetry of the circle. Every trigonometric polynomial of degree at most \(d\) can then be written as the composition of \(\gamma\) with a linear functional on \(\mathbb{R}^{2d}\), namely</p>
+                    \[
+                    f(t)=\langle a,\gamma(t)\rangle
+                    \]
+                    <p>for a suitable coefficient vector \(a\).</p>
+                    <br>
+                    <p>This perspective allows us to apply tools from equivariant topology and configuration-space methods inspired by Borsuk--Ulam-type theorems. Using these ideas, we obtain sharp bounds on the size of intervals or regions on which all functions in the family must vanish or change sign. Our results recover and strengthen several classical theorems on one- and multi-dimensional periodic functions, and extend to compositions of linear functionals with arbitrary equivariant maps. We also show how our framework yields existence results for efficient numerical integration formulas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">A New Class of Geometrically Defined Hypergraphs Arising from the Hadwiger-Nelson Problem</div>
+                    <div class="project-authors">Sean Fiscus, Eric Myzelev, Hongyi Zhang</div>
+                    <div class="project-venue">Geombinatorics Quarterly, 2024</div>
+                    <div class="project-links">
+                        <a href="https://geombina.uccs.edu/past-issues/volume-xxxiii" target="_blank" style="margin-right: 20px;"><i class="fas fa-external-link-alt"></i> Publisher</a>
+                        <a href="https://arxiv.org/abs/2411.05931" target="_blank" style="margin-right: 20px;"><i class="fas fa-link"></i> ArXiv</a>
+                        <a href="Goldwater_Scholarship_Research_Essay.pdf" target="_blank"><i class="fas fa-file-alt"></i> Expository Report</a>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down chevron-icon"></i>
+            </div>
+            
+            <div class="project-description-wrapper">
+                <div class="project-description">
+                    <p>There is a famous problem in geometric graph theory to find the chromatic number of the unit distance graph on Euclidean space; it remains unsolved. A theorem of Erdos and De-Bruijn simplifies this problem to finding the maximum chromatic number of a finite unit distance graph. Via a construction built on sequential finite graphs obtained from a generalization of this theorem, we have found a class of geometrically defined hypergraphs of arbitrarily large edge cardinality, whose proper colorings exactly coincide with the proper colorings of the unit distance graph on $\mathbb R^d$. We also provide partial generalizations of this result to arbitrary real normed vector spaces.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Characterization of Colorings Obtained by a Method of Szlam</div>
+                    <div class="project-authors">Eric Myzelev</div>
+                    <div class="project-venue">Geombinatorics Quarterly, 2024</div>
+                    <div class="project-links">
+                        <a href="https://geombina.uccs.edu/past-issues/volume-xxxiii" target="_blank" style="margin-right: 20px;"><i class="fas fa-external-link-alt"></i> Publisher</a>
+                        <a href="https://arxiv.org/abs/2411.04346" target="_blank"><i class="fas fa-link"></i> ArXiv</a>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down chevron-icon"></i>
+            </div>
+            
+            <div class="project-description-wrapper">
+                <div class="project-description">
+                    <p>Szlam's Lemma is a powerful tool for obtaining upper bounds on the chromatic numbers of distance graphs in normed vector spaces. We introduce and provide a complete characterization for a regimented variety of colorings obtained by the lemma, which we called "ordered Szlam colorings".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get In Touch</h2>
+            
+            <p class="contact-text">
+                I am always open to chatting about math/cs and discussing research problems. Reach out to me!
+            </p>
+
+            <p class="email-text">
+                etmyzele[at]andrew[dot]cmu[dot]edu
+            </p>
+        </div>
+    </section>
+
+    <script>
+        /* --- PROJECT UNFLURL/EXPAND LOGIC --- */
+        const projectItems = document.querySelectorAll('.project-item');
+
+        projectItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Prevent toggling if the user clicked a link or button directly
+                if (e.target.tagName.toLowerCase() === 'a' || e.target.closest('a')) {
+                    return;
+                }
+                
+                // Toggle the 'expanded' class
+                this.classList.toggle('expanded');
+            });
+        });
+
+        /* --- NAVIGATION SCROLL EFFECT --- */
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight * 0.9) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        /* --- CANVAS GRAPH --- */
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+        let mouse = { x: null, y: null, radius: 80 }
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x; this.y = y;
+                this.directionX = directionX; this.directionY = directionY;
+                this.size = size; this.baseSize = size; this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color; ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                
+                if (distance < mouse.radius) {
+                    if (this.size < this.baseSize * 2) this.size += 0.2; 
+                } else if (this.size > this.baseSize) {
+                    this.size -= 0.2; 
+                } else {
+                    this.size = this.baseSize;
+                }
+
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            const deepRedColor = 'rgba(60, 0, 0, 0.5)'; 
+            let numberOfParticles = (canvas.height * canvas.width) / 3000;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 3) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 0.6) - 0.3;
+                let directionY = (Math.random() * 0.6) - 0.3;
+                
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, deepRedColor));
+            }
+        }
+
+        function connect() {
+            const lineRGB = '60, 0, 0';
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = (( particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                    + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        let opacityValue = 1 - (distance/20000);
+                        if (opacityValue > 0) {
+                            ctx.strokeStyle = 'rgba(' + lineRGB + ',' + opacityValue * 0.4 + ')';
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        window.addEventListener('resize', function() {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            mouse.radius = 80;
+            init();
+        });
+
+        window.addEventListener('mouseout', function() {
+            mouse.x = undefined; mouse.y = undefined;
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
